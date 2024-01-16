@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:movie_api_task/Controllers/home_controller.dart';
 import 'package:movie_api_task/Model/movie_model.dart';
+import 'package:movie_api_task/View/favorite_screen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -27,6 +28,21 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.grey,
         appBar: AppBar(
           title: Center(child: Text('App Bar')),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => FavoriteScreen(),
+                      ));
+                  // Get.to(const FavoriteScreen());
+                },
+                icon: Icon(
+                  Icons.favorite,
+                  color: Colors.red,
+                ))
+          ],
           backgroundColor: Colors.purple,
         ),
         body: Center(
@@ -94,7 +110,12 @@ class _HomePageState extends State<HomePage> {
                                               controller.favoriteMovies
                                                   .add(currentItem);
                                             }
-                                            setState(() {});
+                                            // setState(() {});
+                                            controller.favoriteMovies
+                                                .forEach((element) {
+                                              print(
+                                                  "favorite...${element.movie}");
+                                            });
                                             // snapshot.data![index].faverout == true
                                             //     ? snapshot
                                             //             .data![index].faverout ==
